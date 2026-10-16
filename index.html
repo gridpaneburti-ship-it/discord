@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Synergia —m Comunidad Oficial en Discord</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0e14;
+      --card-bg: rgba(22, 27, 34, 0.7);
+      --card-border: rgba(88, 101, 242, 0.2);
+      --discord-blurple: #5865f2;
+      --discord-blurple-hover: #4752c4;
+      --accent-cyan: #00f0ff;
+      --accent-purple: #9d4edd;
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3-af;
+      --online-green: #23a55a;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      overflow-x: hidden;
+      line-height: 1.6;
+      background-image: 
+        radial-gradient(circle at 15% 15%, rgba(88, 101, 242, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 85% 65%, rgba(157, 78, 221, 0.15) 0%, transparent 45%),
+        radial-gradient(circle at 50% 90%, rgba(0, 240, 255, 0.08) 0%, transparent 40%);
+      background-attachment: fixed;
+    }
+
+    /* Navegación */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      backdrop-filter: blur(16px);
+      background: rgba(11, 14, 20, 0.75);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      z-index: 100;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 1.3rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .brand-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--discord-blurple), var(--accent-purple));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 16px rgba(88, 101, 242, 0.45);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: #fff;
+    }
+
+    .btn-d�v {
+      background: var(--discord-blurple);
+      color: #fff !important;
+      padding: 8px 18px;
+      border-radius: 8px;
+      font-weight: 600;
+      box-shadow: 0 2px 10px rgba(88, 101, 242, 0.35);
+      transition: all 0.25s ease;
+    }
+
+    .btn-d�v"hover {
+      background: var(--discord-blurple-hover);
+      transform: translateY(-1px);
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 7rem 1.5rem 4rem;
+      position: relative;
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      background: rgba(35, 165, 90, 0.12);
+      border: 1px solid rgba(35, 165, 90, 0.35);
+      border-radius: 100px;
+      color: #3ba55c;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: var(--online-green);
+      box-shadow: 0 0 8px var(--online-green);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.1); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    .hero h1 {
+      font-size: 3.8rem;
+      font-weight: 800;
+      letter-spacing: -1.5px;
+      margin-bottom: 1.2rem;
+      line-height: 1.1;
+      max-width: 800px;
+      background: linear-gradient(180deg, #ffffff 40%, rgba(255, 255, 255, 0.65) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(135deg, #7289da, #00f0ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      max-width: 620px;
+      margin-bottom: 2.2rem;
+    }
+
+    .cta-group {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn-top {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--discord-blurple);
+      color: #fff;
+      text-decoration: none;
+      padding: 14px 32px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 1.05rem;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 24px rgba(88, 101, 242, 0.45);
+    }
+
+    .btn-top:hover {
+      background: var(--discord-blurple-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 30px rgba(88, 101, 242, 0.6);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #fff;
+      text-decoration: none;
+      padding: 14px 28px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 1.05rem;
+      backdrop-filter: blur(10px);
+      transition: all 0.25s ease;
+    }
+
+    .btn-top-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+
+    /* Estadísticas */
+    .stats-container {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 4rem;
+      flex-wrap: wrap;
+    }
+
+    .stat-card {
+      background: var(--card-bg);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      padding: 16px 28px;
+      border-radius: 14px;
+      text-align: center;
+      min-width: 140px;
+      backdrop-filter: blur(8px);
+    }
+
+    .stat-number {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .stat-label {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Secciones generales */
+    section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 5rem 1.5rem;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+
+    .section-title h2 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 0.6rem;
+    }
+
+    .section-title p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+    }
+
+    /* Grid de características */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+
+    .feature-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 2rem;
+      backdrop-filter: blur(10px);
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(88, 101, 242, 0.5);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: rgba(88, 101, 242, 0.15);
+      border: 1px solid rgba(88, 101, 242, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.2rem;
+      font-size: 1.4rem;
+    }
+
+    .feature-card h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+    }
+
+    .feature-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    /* Normas */
+    .rules-card {
+      background: var(--card-bg);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 2.5rem;
+      backdrop-filter: blur(10px);
+    }
+
+    .rule-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      margin-bottom: 1.6rem;
+    }
+
+    .rule-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .rule-num {
+      background: rgba(88, 101, 242, 0.2);
+      color: var(--discord-blurple);
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .rule-content h4 {
+      font-size: 1.05rem;
+      margin-bottom: 0.2rem;
+      color: #fff;
+    }
+
+    .rule-content p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    /* Banner CTA Final */
+    .cta-banner {
+      background: linear-gradient(135deg, rgba(88, 101, 242, 0.25), rgba(157, 78, 221, 0.15));
+      border: 1px solid rgba(88, 101, 242, 0.4);
+      border-radius: 24px;
+      padding: 3.5rem 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      margin-top: 3rem;
+    }
+
+    .cta-banner h2 {
+      font-size: 2.3rem;
+      font-weight: 800;
+      margin-bottom: 0.8rem;
+    }
+
+    .cta-banner p {
+      color: var(--text-muted);
+      max-width: 550px;
+      margin: 0 auto 2rem;
+      font-size: 1.1rem;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 2.5rem 2rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.5rem; }
+      .nav-links { display: none; }
+      .stats-container { gap: 15px; }
+      .stat-card { min-width: 45%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navegación -->
+  <nav>
+    <a href="#" class="brand">
+      <div class="brand-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="#ffffff">
+          <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.929 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.893.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM9.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.420 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
+        </svg>
+      </div>
+      Synergia
+    </a>
+
+    <div class="nav-links">
+      <a href="#about">Acerca de</a>
+      <a href="#features">Qué ofrecemos</a>
+      <a href="#rules">Normas</a>
+      <a href="https://discord.gg/wCFE9BR39" target="_blank" rel="noopener noreferrer" class="btn-d�v">Unirse al Discord</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero">
+    <div class="status-badge">
+      <div class="status-dot"></div>
+      Servidor Activo & Abierto
+    </div>
+
+    <h1>Donde la comunidad y la pasión crean <span>Sinergia</span>.</h1>
+    <p>Conecta, comparte partidas, aprende y participa en eventos únicos dentro de nuestra comunidad en Discord.</p>
+
+    <div class="cta-group">
+      <a href="https://discord.gg/wCFE9B39" target="_blank" rel="noopener noreferrer" class="btn-primary">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.929 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.893.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM9.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.420 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
+        </svg>
+        Unirme a Synergia
+      </a>
+      <a href="#features" class="btn-secondary">Explorar Servidor</a>
+    </div>
+
+    <!-- Indicadores -->
+    <div class="stats-container">
+      <div class="stat-card">
+        <div class="stat-number">24/7</div>
+        <div class="stat-label">Comunidad Activa</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">100%</div>
+        <div class="stat-label">Libre de Toxicidad</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">Eventos</div>
+        <div class="stat-label">Frecuentes</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Características -->
+  <section id="features">
+    <div class="section-title">
+      <h2>¿Por qué unirte a Synergia?</h2>
+      <p>Diseñado para que encuentres tu espacio ideal desde el primer minuto.</p>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🎮</div>
+        <h3>Gaming & Partidas</h3>
+        <p>Encuentra compañeros de juego al instante para tus títulos favoritos con canales dedicados y emparejamiento rápido.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🔩</div>
+        <h3>Salas de Voz con Calidad</h3>
+        <p>Salas configuradas para partidas competitivas, música, streams y charlas casuales sin saturación de audio.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🏆</div>
+        <h3>Torneos y Dinámicas</h3>
+        <p>Participa en sorteos, concursos temáticos, noches de cine y actividades organizadas por el staff.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🤭</div>
+        <h3>Bots Personalizados</h3>
+        <p>Integraciones con bots de música, economía propia, minijuegos y utilidades para que nunca te aburras.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🙰</div>
+        <h3>Moderación Activa</h3>
+        <p>Un equipo dedicado a mantener un entorno seguro, respetuoso y amigable para todas las edades.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🚀</div>
+        <h3>Roles y Niveles</h3>
+        <p>Gana experiencia interactuando en los chats y desbloquea roles exclusivos, colores de nick y ventajas especiales.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reglas Rápidas -->
+  <section id="rules">
+    <div class="section-title">
+      <h2>Reglas de Convivencia</h2>
+      <p>Sencillas pautas para que todos disfrutemos de la mejor experiencia.</p>
+    </div>
+
+    <div class="rules-card">
+      <div class="rule-item">
+        <div class="rule-num">1</div>
+        <div class="rule-content">
+          <h4>Respeto ante todo</h4>
+          <p>No se toleran faltas de respeto, discriminación, acoso ni discursos de odio de ningún tipo.</p>
+        </div>
+      </div>
+
+      <div class="rule-item">
+        <div class="rule-num">2</div>
+        <div class="rule-content">
+          <h4>Cero Spam y Promoción no autorizada</h4>
+          <p>Evita compartir enlaces de otros servidores o publicidad sin el consentimiento previo del staff.</p>
+        </div>
+      </div>
+
+      <div class="rule-item">
+        <div class="rule-num">3</div>
+        <div class="rule-content">
+          <h4>Uso adecuado de los canales</h4>
+          <p>Utiliza cada canal según su propósito (memes en memes, comandos en bots, etc.) para mantener el orden.</p>
+        </div>
+      </div>
+
+      <div class="rule-item">
+        <div class="rule-num">4</div>
+        <div class="rule-content">
+          <h4>Sigue los Términos de Servicio de Discord</h4>
+          <p>Cualquier infracción directa a las pautas de Discord conllevará sanciones inmediatas.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Banner Final CTA -->
+    <div class="cta-banner">
+      <h2>¿Listo para formar parte de Synergia?</h2>
+      <p>Solo toma unos segundos unirte. ¡�� estamos esperando en el canal de bienvenida!</p>
+      <a href="https://discord.gg/wCFE9BR39" target="_blank" rel="noopener noreferrer" class="btn-top">
+        Entrar al Servidor de Discord
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2026 Synergia. Todos los derechos reservados. No afiliado oficialmente con Discord Inc.</p>
+  </footer>
+
+</body>
+</html>
